@@ -7,5 +7,6 @@ namespace ContactManagement.Api.Repository
     public interface IContactRepository
     {
         IEnumerable<ContactModel> GetAllContact();
+        void CreateContact(ContactModel Contact);
     }
 }

@@ -9,5 +9,12 @@ namespace ContactManagement.Api.Repository
         {
             return ContactJsonHelper.ReadFromJsonFile();
         }
+        public void CreateContact(ContactModel newContact)
+        {
+            IList<ContactModel> lstContacts = new List<ContactModel>();
+            lstContacts = ContactJsonHelper.ReadFromJsonFile();
+            lstContacts.Add(newContact);
+            ContactJsonHelper.WriteToJsonFile(lstContacts);
+        }
     }
 }

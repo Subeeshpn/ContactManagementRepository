@@ -25,6 +25,17 @@ namespace ContactManagement.Api.Controllers
 
             return contact;
         }
+        [HttpPost]
+        public IActionResult CreateContact([FromBody] ContactModel model)
+        {
+
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+            _contactRepository.CreateContact(model);
+            return Ok(new { message = "User created" });
+        }
 
     }
 }
