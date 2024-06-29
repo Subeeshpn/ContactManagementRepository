@@ -6,7 +6,7 @@ namespace ContactManagement.Api.WebApiHelpers
 {
     public static class ContactJsonHelper
     {
-        private static readonly string JsonFilePath = Path.Combine(Directory.GetCurrentDirectory(), "ContactDataJson.json");
+        private static readonly string JsonFilePath = Path.Combine(Directory.GetCurrentDirectory(), "ContactDataSource.json");
         public static IList<ContactModel> ReadFromJsonFile()
         {
             string jsonString = File.ReadAllText(JsonFilePath);
