@@ -37,5 +37,17 @@ namespace ContactManagement.Api.Controllers
             return Ok(new { message = "User created" });
         }
 
+        [HttpDelete("{id}")]
+        public IActionResult DeleteContact(int id)
+        {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+
+            _contactRepository.DeleteContact(id);
+            return Ok(new { message = "User deleted" });
+        }
+
     }
 }

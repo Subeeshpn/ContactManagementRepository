@@ -8,5 +8,6 @@ namespace ContactManagement.Api.Repository
     {
         IEnumerable<ContactModel> GetAllContact();
         void CreateContact(ContactModel Contact);
+        void DeleteContact(int id);
     }
 }
