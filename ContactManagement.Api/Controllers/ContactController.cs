@@ -37,6 +37,23 @@ namespace ContactManagement.Api.Controllers
             return Ok(new { message = "User created" });
         }
 
+        [HttpPut("{id}")]
+        public IActionResult UpdateContact(int id, ContactModel model)
+        {
+            if (id != model.ContactId)
+            {
+                return BadRequest();
+            }
+
+            var contactResponse = _contactRepository.UpdateContact(id, model);
+
+            if (contactResponse == null)
+            {
+                return NotFound();
+            }
+            return Ok(new { message = "User updated" });
+        }
+
         [HttpDelete("{id}")]
         public IActionResult DeleteContact(int id)
         {

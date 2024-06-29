@@ -16,6 +16,23 @@ namespace ContactManagement.Api.Repository
             lstContacts.Add(newContact);
             ContactJsonHelper.WriteToJsonFile(lstContacts);
         }
+
+        public ContactModel UpdateContact(int id, ContactModel contactModel)
+        {
+            var contacts = ContactJsonHelper.ReadFromJsonFile();
+            var existingContact = contacts.FirstOrDefault(p => p.ContactId == id);
+
+            if (existingContact != null)
+            {
+                existingContact.FirstName = contactModel.FirstName;
+                existingContact.LastName = contactModel.LastName;
+                existingContact.EmailId = contactModel.EmailId;
+                ContactJsonHelper.WriteToJsonFile(contacts);
+            }
+            return existingContact;
+
+        }
+
         public void DeleteContact(int id)
         {
             var contacts = ContactJsonHelper.ReadFromJsonFile();
