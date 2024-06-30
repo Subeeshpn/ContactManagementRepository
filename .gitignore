@@ -362,3 +362,4 @@ MigrationBackup/
 # Fody - auto-generated XML schema
 FodyWeavers.xsd
 /ContactManagement.Api.UnitTest/ContactUnitTest.cs
+/ContactManagement.App
