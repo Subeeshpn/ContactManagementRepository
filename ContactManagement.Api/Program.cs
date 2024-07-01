@@ -1,6 +1,7 @@
 using ContactManagement.Api.Models;
 using ContactManagement.Api.Repository;
 using ContactManagement.Api.Controllers;
+using ContactManagement.Api.WebApiHelpers;
 
 var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddEndpointsApiExplorer();
@@ -23,6 +24,6 @@ if (app.Environment.IsDevelopment())
     name: "default",
     pattern: "{controller=Contact}/{action=GetAllContact}/{id?}");
 }
-
+app.UseExceptionHandlerMiddleware();
 app.UseHttpsRedirection();
 app.Run();
