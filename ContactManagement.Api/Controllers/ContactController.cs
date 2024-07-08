@@ -2,6 +2,7 @@
 using ContactManagement.Api.Repository;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using NLog;
 
 namespace ContactManagement.Api.Controllers
 {
@@ -10,6 +11,7 @@ namespace ContactManagement.Api.Controllers
     public class ContactController : ControllerBase
     {
         private readonly IContactRepository _contactRepository;
+        private static readonly Logger _logger = LogManager.GetCurrentClassLogger();
 
         public ContactController(IContactRepository contactRepository)
         {
@@ -20,7 +22,7 @@ namespace ContactManagement.Api.Controllers
         [HttpGet]
         public IEnumerable<ContactModel> GetAllContact()
         {
-
+            _logger.Info("ContactController: Get method called");
             var contact = _contactRepository.GetAllContact().AsEnumerable();
 
             return contact;
@@ -28,6 +30,7 @@ namespace ContactManagement.Api.Controllers
         [HttpPost]
         public IActionResult CreateContact([FromBody] ContactModel model)
         {
+            _logger.Info("ContactController: Post method called");
 
             if (!ModelState.IsValid)
             {
@@ -40,6 +43,7 @@ namespace ContactManagement.Api.Controllers
         [HttpPut("{id}")]
         public IActionResult UpdateContact(int id, ContactModel model)
         {
+            _logger.Info("ContactController: Put method called");
             if (id != model.ContactId)
             {
                 return BadRequest();
@@ -57,6 +61,7 @@ namespace ContactManagement.Api.Controllers
         [HttpDelete("{id}")]
         public IActionResult DeleteContact(int id)
         {
+            _logger.Info("ContactController: Delete method called");
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
