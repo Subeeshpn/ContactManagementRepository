@@ -363,3 +363,5 @@ MigrationBackup/
 FodyWeavers.xsd
 /ContactManagement.Api.UnitTest/ContactUnitTest.cs
 /ContactManagement.App
+/ContactManagement.Api/WebApiHelpers/ILoggerManager.cs
+/ContactManagement.Api/WebApiHelpers/LoggerManager.cs
