@@ -44,7 +44,7 @@ namespace ContactManagement.Api.Controllers
         public IActionResult UpdateContact(int id, ContactModel model)
         {
             _logger.Info("ContactController: Put method called");
-            if (id != model.ContactId)
+            if (id != model.id)
             {
                 return BadRequest();
             }

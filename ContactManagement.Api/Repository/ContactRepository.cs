@@ -20,13 +20,13 @@ namespace ContactManagement.Api.Repository
         public ContactModel UpdateContact(int id, ContactModel contactModel)
         {
             var contacts = ContactJsonHelper.ReadFromJsonFile();
-            var existingContact = contacts.FirstOrDefault(p => p.ContactId == id);
+            var existingContact = contacts.FirstOrDefault(p => p.id == id);
 
             if (existingContact != null)
             {
-                existingContact.FirstName = contactModel.FirstName;
-                existingContact.LastName = contactModel.LastName;
-                existingContact.EmailId = contactModel.EmailId;
+                existingContact.firstname = contactModel.firstname;
+                existingContact.lastname = contactModel.lastname;
+                existingContact.emailid = contactModel.emailid;
                 ContactJsonHelper.WriteToJsonFile(contacts);
             }
             return existingContact;
@@ -36,7 +36,7 @@ namespace ContactManagement.Api.Repository
         public void DeleteContact(int id)
         {
             var contacts = ContactJsonHelper.ReadFromJsonFile();
-            var contat = contacts.FirstOrDefault(c => c.ContactId == id);
+            var contat = contacts.FirstOrDefault(c => c.id == id);
 
             if (contat == null)
             {

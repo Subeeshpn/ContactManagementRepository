@@ -5,12 +5,12 @@ namespace ContactManagement.Api.Models
     public class ContactModel
     {
         [Required]
-        public int ContactId { get; set; }
+        public int id { get; set; }
         [Required]
-        public string FirstName { get; set; }
+        public string firstname { get; set; }
         [Required]
-        public string LastName { get; set; }
+        public string lastname { get; set; }
         [Required]
-        public string EmailId { get; set; }
+        public string emailid { get; set; }
     }
 }
