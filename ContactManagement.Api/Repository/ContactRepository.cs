@@ -9,6 +9,13 @@ namespace ContactManagement.Api.Repository
         {
             return ContactJsonHelper.ReadFromJsonFile();
         }
+        public ContactModel GetContactbyId(int id)
+        {
+          
+            var contacts = ContactJsonHelper.ReadFromJsonFile();
+            var existingContact = contacts.FirstOrDefault(p => p.id == id);
+            return existingContact;
+        }
         public void CreateContact(ContactModel newContact)
         {
             IList<ContactModel> lstContacts = new List<ContactModel>();
@@ -16,6 +23,7 @@ namespace ContactManagement.Api.Repository
             lstContacts.Add(newContact);
             ContactJsonHelper.WriteToJsonFile(lstContacts);
         }
+      
 
         public ContactModel UpdateContact(int id, ContactModel contactModel)
         {
@@ -36,13 +44,13 @@ namespace ContactManagement.Api.Repository
         public void DeleteContact(int id)
         {
             var contacts = ContactJsonHelper.ReadFromJsonFile();
-            var contat = contacts.FirstOrDefault(c => c.id == id);
+            var contact = contacts.FirstOrDefault(c => c.id == id);
 
-            if (contat == null)
+            if (contact == null)
             {
 
             }
-            contacts.Remove(contat);
+            contacts.Remove(contact);
             ContactJsonHelper.WriteToJsonFile(contacts);
         }
     }

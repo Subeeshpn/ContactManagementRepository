@@ -3,6 +3,7 @@ using ContactManagement.Api.Repository;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using NLog;
+using System.Reflection;
 
 namespace ContactManagement.Api.Controllers
 {
@@ -27,6 +28,16 @@ namespace ContactManagement.Api.Controllers
 
             return contact;
         }
+
+        [HttpGet("{id}")]
+        public IActionResult GetContactbyId(int id)
+        {
+            _logger.Info("ContactController: GetContactbyId method called");
+
+            var contactResponse = _contactRepository.GetContactbyId(id);
+            return Ok(contactResponse);
+        }
+
         [HttpPost]
         public IActionResult CreateContact([FromBody] ContactModel model)
         {
@@ -39,6 +50,7 @@ namespace ContactManagement.Api.Controllers
             _contactRepository.CreateContact(model);
             return Ok(new { message = "User created" });
         }
+        
 
         [HttpPut("{id}")]
         public IActionResult UpdateContact(int id, ContactModel model)
