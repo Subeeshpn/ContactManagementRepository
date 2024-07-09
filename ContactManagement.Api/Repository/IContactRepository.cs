@@ -13,6 +13,6 @@ namespace ContactManagement.Api.Repository
 
         ContactModel UpdateContact(int id, ContactModel contactModel);
 
-        void DeleteContact(int id);
+        bool DeleteContact(int id);
     }
 }

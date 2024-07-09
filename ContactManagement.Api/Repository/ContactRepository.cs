@@ -19,8 +19,14 @@ namespace ContactManagement.Api.Repository
         public void CreateContact(ContactModel newContact)
         {
             IList<ContactModel> lstContacts = new List<ContactModel>();
+            ContactModel addNewContact = new ContactModel();
             lstContacts = ContactJsonHelper.ReadFromJsonFile();
-            lstContacts.Add(newContact);
+            int maxId= lstContacts.Max(p => p.id);
+            addNewContact.id = maxId + 1;
+            addNewContact.firstname = newContact.firstname;
+            addNewContact.lastname =newContact.lastname;
+            addNewContact.emailid =newContact.emailid;
+            lstContacts.Add(addNewContact);
             ContactJsonHelper.WriteToJsonFile(lstContacts);
         }
       
@@ -41,7 +47,7 @@ namespace ContactManagement.Api.Repository
 
         }
 
-        public void DeleteContact(int id)
+        public bool DeleteContact(int id)
         {
             var contacts = ContactJsonHelper.ReadFromJsonFile();
             var contact = contacts.FirstOrDefault(c => c.id == id);
@@ -52,6 +58,7 @@ namespace ContactManagement.Api.Repository
             }
             contacts.Remove(contact);
             ContactJsonHelper.WriteToJsonFile(contacts);
+            return true;
         }
     }
 }

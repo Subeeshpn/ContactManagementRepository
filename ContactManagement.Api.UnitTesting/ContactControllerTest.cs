@@ -35,17 +35,7 @@ namespace ContactManagement.Api.UnitTesting
             var obj = result as ObjectResult;
             Assert.AreEqual(200, obj.StatusCode);
         }
-        //[TestMethod]
-        //public void Post_Contact_ReturnsOk()
-        //{
-        //    var contact = _fixture.Create<ContactModel>();
-        //    _contactRepositoryMock.Setup(repo => repo.CreateContact(It.IsAny<ContactModel>())).Returns(ContactModel);
-        //    _controller = new ContactController(_contactRepositoryMock.Object);
-
-        //    var result = _controller.CreateContact(contact);
-        //    var obj = result as ObjectResult;
-        //    Assert.AreEqual(200, obj.StatusCode);
-        //}
+       
 
     }
 }

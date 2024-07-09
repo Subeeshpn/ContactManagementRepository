@@ -1,14 +1,1 @@
-[
-  {
-    "ContactId": 1,
-    "FirstName": "zidan",
-    "LastName": "zidane",
-    "EmailId": "zidan@gmail.com"
-  },
-  {
-    "ContactId": 2,
-    "FirstName": "SACH",
-    "LastName": "Sach",
-    "EmailId": "sac@gmail.com"
-  },
- {"ContactId":3,"FirstName":"kichu","LastName":"kichu1","EmailId":"kichu@gmail.com"}]
+[{"id":1,"firstname":"zidan","lastname":"zidane","emailid":"zidan@gmail.com"},{"id":2,"firstname":"SACH","lastname":"Sach","emailid":"sac@gmail.com"},{"id":3,"firstname":"kichu1","lastname":"kichu11","emailid":"kichu@gmail.com"}]
