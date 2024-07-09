@@ -365,3 +365,4 @@ FodyWeavers.xsd
 /ContactManagement.App
 /ContactManagement.Api/WebApiHelpers/ILoggerManager.cs
 /ContactManagement.Api/WebApiHelpers/LoggerManager.cs
+/ContactManagement.Api/ContactDataSource.json
