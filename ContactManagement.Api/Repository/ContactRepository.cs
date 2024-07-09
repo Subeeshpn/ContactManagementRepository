@@ -47,18 +47,18 @@ namespace ContactManagement.Api.Repository
 
         }
 
-        public bool DeleteContact(int id)
+        public void DeleteContact(int id)
         {
             var contacts = ContactJsonHelper.ReadFromJsonFile();
             var contact = contacts.FirstOrDefault(c => c.id == id);
 
-            if (contact == null)
+            if (contact != null)
             {
-
+                contacts.Remove(contact);
+                ContactJsonHelper.WriteToJsonFile(contacts);
             }
-            contacts.Remove(contact);
-            ContactJsonHelper.WriteToJsonFile(contacts);
-            return true;
+            
+            
         }
     }
 }
