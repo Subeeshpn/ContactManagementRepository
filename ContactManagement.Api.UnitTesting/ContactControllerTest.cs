@@ -34,7 +34,9 @@ namespace ContactManagement.Api.UnitTesting
             var result = _controller.GetAllContact();
             var obj = result as ObjectResult;
             Assert.AreEqual(200, obj.StatusCode);
+           
         }
+
        
 
     }

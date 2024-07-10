@@ -1,5 +1,6 @@
 ﻿using ContactManagement.Api.Models;
 using ContactManagement.Api.Repository;
+using ContactManagement.Api.WebApiHelpers;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using NLog;
@@ -56,9 +57,15 @@ namespace ContactManagement.Api.Controllers
         public IActionResult UpdateContact(int id, ContactModel model)
         {
             _logger.Info("ContactController: Put method called");
+            ApiError apiError = new ApiError();
+
             if (id != model.id)
             {
-                return BadRequest();
+                apiError.ErrorCode = BadRequest().StatusCode;
+                apiError.errorMessage = "Invalid parameters in request body";
+                apiError.ErrorDetails = "This error due to invalid parameters in request";
+
+                return BadRequest(apiError);
             }
 
             var contactResponse = _contactRepository.UpdateContact(id, model);
@@ -74,13 +81,15 @@ namespace ContactManagement.Api.Controllers
         public IActionResult DeleteContact(int id)
         {
             _logger.Info("ContactController: Delete method called");
+            ApiError apiError = new ApiError();
+
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
 
             _contactRepository.DeleteContact(id);
-            return Ok(new { message = "User deleted" });
+            return NoContent();
         }
 
     }

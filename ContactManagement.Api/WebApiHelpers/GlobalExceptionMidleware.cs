@@ -5,40 +5,62 @@ using System.Linq;
 using System.Net;
 using Newtonsoft.Json;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Hosting;
 
 namespace ContactManagement.Api.WebApiHelpers
 {
     public class GlobalExceptionMidleware
     {
-        private readonly RequestDelegate _next;
-        public GlobalExceptionMidleware(RequestDelegate next)
+        private readonly RequestDelegate next;
+
+        private readonly ILogger<GlobalExceptionMidleware> logger;
+        //private readonly IHostingEnvironment env;
+        
+        public GlobalExceptionMidleware(RequestDelegate next, ILogger<GlobalExceptionMidleware> logger)
         {
-            _next = next;
+            this.next = next;
+            this.logger = logger;
+           // this.env = env;
         }
 
         public async Task Invoke(HttpContext context)
         {
+            var builder = WebApplication.CreateBuilder();
+            var isDevelopment = builder.Environment.IsDevelopment();
             try
             {
-                await _next.Invoke(context);
+                await next.Invoke(context);
             }
             catch (Exception ex)
             {
+                ApiError response;
+                HttpStatusCode statusCode = HttpStatusCode.InternalServerError;
+                string message;
+                var exceptionType = ex.GetType();
 
+                if (exceptionType == typeof(UnauthorizedAccessException))
+                {
+                    statusCode = HttpStatusCode.Forbidden;
+                    message = "your are not authorized";
+                }
+                else
+                {
+                    statusCode = HttpStatusCode.InternalServerError;
+                    message = "Some unknown error occured";
+                }
+                if (builder.Environment.IsDevelopment())
+                {
+                    response = new ApiError((int)statusCode, ex.Message, ex.StackTrace.ToString());
+                }
+                else
+                {
+                    response = new ApiError((int)statusCode, message);
+                }
+                context.Response.StatusCode = (int)statusCode;
+                context.Response.ContentType = "application/json";
+                await context.Response.WriteAsync(response.ToString());
             }
-        }
-        private static Task HandleExceptionMessageAsync(HttpContext context, Exception exception)
-        {
-            context.Response.ContentType = "application/json";
-            int statusCode = (int)HttpStatusCode.InternalServerError;
-            var result = JsonConvert.SerializeObject(new
-            {
-                StatusCode = statusCode,
-                ErrorMessage = exception.Message
-            });
-            context.Response.ContentType = "application/json";
-            context.Response.StatusCode = statusCode;
-            return context.Response.WriteAsync(result);
+
         }
     }
 }

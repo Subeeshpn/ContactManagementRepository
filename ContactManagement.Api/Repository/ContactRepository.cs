@@ -57,6 +57,10 @@ namespace ContactManagement.Api.Repository
                 contacts.Remove(contact);
                 ContactJsonHelper.WriteToJsonFile(contacts);
             }
+            else
+            {
+                throw new Exception("Contact id is not found.");
+            }
             
             
         }
