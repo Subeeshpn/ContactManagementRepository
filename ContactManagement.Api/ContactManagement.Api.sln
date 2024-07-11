@@ -5,7 +5,7 @@ VisualStudioVersion = 17.10.35013.160
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ContactManagement.Api", "ContactManagement.Api.csproj", "{6A1F9C26-6326-4271-B3B4-646B9A90ABC0}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ContactManagement.Api.UnitTesting", "..\ContactManagement.Api.UnitTesting\ContactManagement.Api.UnitTesting.csproj", "{E829FE9B-D423-439D-901E-189D8D8FAB57}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ContactsManagement.Api.UnitTest", "..\ContactsManagement.Api.UnitTest\ContactsManagement.Api.UnitTest.csproj", "{8DC191B8-8277-4FCD-8BE5-04E6A0B92F39}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -17,10 +17,10 @@ Global
 		{6A1F9C26-6326-4271-B3B4-646B9A90ABC0}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{6A1F9C26-6326-4271-B3B4-646B9A90ABC0}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{6A1F9C26-6326-4271-B3B4-646B9A90ABC0}.Release|Any CPU.Build.0 = Release|Any CPU
-		{E829FE9B-D423-439D-901E-189D8D8FAB57}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{E829FE9B-D423-439D-901E-189D8D8FAB57}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{E829FE9B-D423-439D-901E-189D8D8FAB57}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{E829FE9B-D423-439D-901E-189D8D8FAB57}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8DC191B8-8277-4FCD-8BE5-04E6A0B92F39}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8DC191B8-8277-4FCD-8BE5-04E6A0B92F39}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8DC191B8-8277-4FCD-8BE5-04E6A0B92F39}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8DC191B8-8277-4FCD-8BE5-04E6A0B92F39}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
