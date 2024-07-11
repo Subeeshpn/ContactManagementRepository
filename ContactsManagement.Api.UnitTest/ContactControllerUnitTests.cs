@@ -53,10 +53,7 @@ namespace ContactsManagement.Api.UnitTest
             contactService.Setup(x => x.GetContactbyId(2))
                 .Returns(contactList[1]);
             var contactController = new ContactController(contactService.Object);
-            //act
-            var contactResult = contactController.GetContactbyId(1);
-           
-            //assert
+            var contactResult = contactController.GetContactbyId(1);   
             Assert.NotNull(contactList);
             //Assert.Equal(contactList[1].id, contactResult.id);
             //Assert.True(contactList[1].id 
@@ -75,10 +72,8 @@ namespace ContactsManagement.Api.UnitTest
         {
 
             var newConact = new ContactModel { id = 3, firstname = "Sam Wilson",lastname="same last", emailid = "sam@example.com" };
-            // Act
             var contactController = new ContactController(contactService.Object);
             var result = contactController.CreateContact(newConact) as CreatedAtActionResult; 
-            // Assert
             Assert.NotNull(result); 
             Assert.Equal(201, result.StatusCode); 
             Assert.Equal("GetContactbyId", result.ActionName); 
@@ -98,10 +93,8 @@ namespace ContactsManagement.Api.UnitTest
         public void Contact_Update_InvalidData_Return_NotFound() {
             var updatedUser = new ContactModel { id = 1, firstname = "John Updated",lastname= "John Updated1", emailid = "john.updated@example.com" };
             contactService.Setup(service => service.UpdateContact(updatedUser.id, updatedUser));
-            // Act
             var contactController = new ContactController(contactService.Object);
             var result = contactController.UpdateContact(1, updatedUser) as NoContentResult; 
-            // Assert
             Assert.NotNull(result); 
             Assert.Equal(204, result.StatusCode); 
         }
@@ -114,12 +107,8 @@ namespace ContactsManagement.Api.UnitTest
         {
             var Id = 1;
             contactService.Setup(service => service.DeleteContact(Id));
-            // Act
             var contactController = new ContactController(contactService.Object);
-            //act
-
             var result = contactController.DeleteContact(Id) as NoContentResult;
-            // Assert
             Assert.NotNull(result);
             Assert.Equal(204, result.StatusCode);
 
