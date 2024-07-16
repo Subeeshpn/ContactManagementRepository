@@ -54,4 +54,5 @@ if (app.Environment.IsDevelopment())
 app.UseExceptionHandlerMiddleware();
 app.UseHttpsRedirection();
 app.UseCors();
+app.UseMiddleware<GlobalExceptionMidleware>();
 app.Run();
