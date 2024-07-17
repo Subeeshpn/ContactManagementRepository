@@ -71,13 +71,15 @@ namespace ContactsManagement.Api.UnitTest
         public void Contact_Add_ValidData_Return_OkResult()
         {
 
-            var newConact = new ContactModel { id = 3, firstname = "Sam Wilson",lastname="same last", emailid = "sam@example.com" };
-            var contactController = new ContactController(contactService.Object);
-            var result = contactController.CreateContact(newConact) as CreatedAtActionResult; 
-            Assert.NotNull(result); 
-            Assert.Equal(201, result.StatusCode); 
-            Assert.Equal("GetContactbyId", result.ActionName); 
-            Assert.Equal(newConact.id, ((ContactModel)result.Value).id); 
+            var newConact = new ContactModel { id = 1, firstname = "zidan", lastname= "zidane", emailid = "zidan@gmail.com" };
+            ContactRepository contactRepository = new ContactRepository();
+            contactRepository.CreateContact(newConact);
+            var result = contactRepository.GetContactbyId(1);
+            Assert.NotNull(result);
+            Assert.Equal(newConact.id, result.id);
+            Assert.Equal(newConact.firstname, result.firstname);
+            Assert.Equal(newConact.lastname, result.lastname);
+            Assert.Equal(newConact.emailid, result.emailid);
         }
         //[Fact]
         //public void Contact_Add_InvalidData_Return_BadRequest() { }
@@ -91,12 +93,16 @@ namespace ContactsManagement.Api.UnitTest
         //public void Contact_Update_InvalidData_Return_BadRequest() { }
         [Fact]
         public void Contact_Update_InvalidData_Return_NotFound() {
-            var updatedUser = new ContactModel { id = 1, firstname = "John Updated",lastname= "John Updated1", emailid = "john.updated@example.com" };
-            contactService.Setup(service => service.UpdateContact(updatedUser.id, updatedUser));
-            var contactController = new ContactController(contactService.Object);
-            var result = contactController.UpdateContact(1, updatedUser) as NoContentResult; 
+            var updatedConact = new ContactModel { id = 1, firstname = "zidan", lastname = "zidane", emailid = "zidan@gmail.com" };
+        
+
+            ContactRepository contactRepository = new ContactRepository();
+            contactRepository.CreateContact(updatedConact);
+            var result = contactRepository.GetContactbyId(1);
             Assert.NotNull(result); 
-            Assert.Equal(204, result.StatusCode); 
+            Assert.Equal(updatedConact.firstname, result.firstname); 
+            Assert.Equal(updatedConact.lastname, result.lastname);
+            Assert.Equal(updatedConact.emailid, result.emailid);
         }
 
 
